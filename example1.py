@@ -26,10 +26,10 @@ try:
     WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Verônica Maria Lima Silva"))).click()  # contains the search results
     WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Abrir Currículo"))).click()            # open the cv window
     time.sleep(10)                                                                                                    # wait
-    newURl = driver.window_handles[1]
-    driver.switch_to.window(newURl)
-    element = driver.find_element_by_class_name("informacoes-autor").text
-    print(element[70:-1])
+    newURl = driver.window_handles[1]                                                                                 # get the url of the new window 
+    driver.switch_to.window(newURl)                                                                                   # update the url 
+    element = driver.find_element_by_class_name("informacoes-autor").text                                             # get the information
+    print(element[70:-1])                                                                                             # print the information
 except Exception as e:
     print(e)
     driver.quit()
