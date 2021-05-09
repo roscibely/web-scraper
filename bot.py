@@ -22,15 +22,14 @@ searchBar.send_keys('\n')
 time.sleep(10)                                                              # wait
 
 try:
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "resultado")))                 # wait for search results to be fetched
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "resultado")))                     # wait for search results to be fetched
+    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Verônica Maria Lima Silva"))).click()  # contains the search results
+    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Abrir Currículo"))).click()            # open the cv window
+    time.sleep(10)                                                                                                    # wait
+    newURl = driver.window_handles[1]
+    driver.switch_to.window(newURl)
+    element = driver.find_element_by_class_name("informacoes-autor").text
+    print(element[70:-1])
 except Exception as e:
     print(e)
     driver.quit()
-   
-WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Verônica Maria Lima Silva"))).click()  # contains the search results
-WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Abrir Currículo"))).click()            # open the cv window
-time.sleep(10)
-newURl = driver.window_handles[1]
-driver.switch_to.window(newURl)
-element = driver.find_element_by_class_name("informacoes-autor").text
-print(element[70:-1])
