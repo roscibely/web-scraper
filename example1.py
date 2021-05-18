@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat May  8 17:14:01 2021
-
 @author: roscibely
 """
 
@@ -15,7 +14,8 @@ path = 'C:\Program Files (x86)\chromedriver.exe'                            # pa
 driver = webdriver.Chrome(path)                                             # create nstance of webdriver
 url = 'http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar' # Lattes url
 driver.get(url)                                                             # Code to open a specific url
-keyword = 'veronica maria lima silva'                                       # set the name you want to search for
+keyword = 'rosana cibely'                                                   # set the name you want to search for
+check = driver.find_element_by_id('buscarDemais').click()                   # clik on the box
 searchBar = driver.find_element_by_name('textoBusca')                       # we find the search bar using it's name attribute value
 searchBar.send_keys(keyword)                                                # first we send our keyword to the search bar followed by the enter \n key
 searchBar.send_keys('\n')
@@ -23,7 +23,7 @@ time.sleep(10)                                                              # wa
 
 try:
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "resultado")))                     # wait for search results to be fetched
-    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Verônica Maria Lima Silva"))).click()  # contains the search results
+    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Rosana Cibely Batista Rego"))).click() # contains the search results
     WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.LINK_TEXT, "Abrir Currículo"))).click()            # open the cv window
     time.sleep(10)                                                                                                    # wait
     newURl = driver.window_handles[1]                                                                                 # get the url of the new window 
